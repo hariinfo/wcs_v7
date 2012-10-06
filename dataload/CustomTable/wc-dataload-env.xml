@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ =================================================================
+  Licensed Materials - Property of IBM
+
+  WebSphere Commerce
+
+  (C) Copyright IBM Corp. 2009 All Rights Reserved.
+
+  US Government Users Restricted Rights - Use, duplication or
+  disclosure restricted by GSA ADP Schedule Contract with
+  IBM Corp.
+ =================================================================
+-->
+<_config:DataLoadEnvConfiguration
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ibm.com/xmlns/prod/commerce/foundation/config ../../../xml/config/xsd/wc-dataload-env.xsd" 
+	xmlns:_config="http://www.ibm.com/xmlns/prod/commerce/foundation/config">
+ 	<!-- Madisons Store in Toolkit -->
+	<_config:BusinessContext storeIdentifier="Madisons" catalogIdentifier="Madisons" 
+		languageId="-1" currency="USD">
+
+	</_config:BusinessContext>
+
+	<!-- database setting for derby in Toolkit -->
+	<_config:Database type="derby" name="..\db\mall" schema="APP"/>
+
+	<!-- database setting for Oracle -->	
+	<!-- 
+	<_config:Database name="<database name>" user="<user>" password="<password>"
+		port="1521" schema="<schema name>" server="<server>" type="Oracle" dbDriverType="thin" />
+	 -->	
+	
+	<!-- database setting for AIX/DB2 server -->
+	<!--
+	<_config:Database type="db2" name="<database name>" user="<user>" password="<password>" server="<server>" port="<port>" schema="<schema>" />
+	 -->  
+		
+	<_config:IDResolver className="com.ibm.commerce.foundation.dataload.idresolve.IDResolverImpl" cacheSize="10000000"/>
+
+	<_config:DataWriter className="com.ibm.commerce.foundation.dataload.datawriter.JDBCDataWriter" />
+
+</_config:DataLoadEnvConfiguration>

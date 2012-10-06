@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<_config:DataLoadConfiguration
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ibm.com/xmlns/prod/commerce/foundation/config ../../../../xml/config/xsd/wc-dataload.xsd"
+    xmlns:_config="http://www.ibm.com/xmlns/prod/commerce/foundation/config">
+  <_config:DataLoadEnvironment configFile="./wc-dataload-env.xml" />
+  
+  <_config:LoadOrder commitCount="100" batchSize="1" dataLoadMode="Replace">
+         <!--_config:property name="firstTwoLinesAreHeader" value="true" /-->
+         <_config:LoadItem name="XMYTable" businessObjectConfigFile="wc-loader-custom.xml" >
+              <_config:DataSourceLocation location="MyData.csv" />
+         </_config:LoadItem>
+  </_config:LoadOrder> 
+
+</_config:DataLoadConfiguration>
