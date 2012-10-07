@@ -4,8 +4,8 @@ select * from orders where status in ('P','M') and member_id in
 order by LASTUPDATE desc;
 
 -- Get Payment number of payment types associated to the order, if more than
-one payment is associated we should see more than one PPCPAYINST_ID associated to
-and ORDER
+-- one payment is associated we should see more than one PPCPAYINST_ID associated to
+-- an ORDER
 
 select * from PPCPAYINST where order_id in 
 (select orders_id from orders where status in ('P','M') and member_id in 
@@ -14,8 +14,8 @@ select * from PPCPAYINST where order_id in
 
 
 -- Get Payment type details associated to the order, if more than
-one payment is associated we should see more than one PPCPAYINST_ID associated to
-and ORDER, DATAVALUE in ppcextdata is usually in encrypted format
+-- one payment is associated we should see more than one PPCPAYINST_ID associated to
+-- and ORDER, DATAVALUE in ppcextdata is usually in encrypted format
 select * from ppcextdata where PPCPAYINST_ID in
 (select PPCPAYINST_ID from PPCPAYINST where order_id in 
 (select orders_id from orders where status in ('P','M') and member_id in 
