@@ -3,7 +3,7 @@ select * from orders where status in ('P','M') and member_id in
 (select users_id from userreg where logonid='test_user2')
 order by LASTUPDATE desc;
 
--- Get Payment number of payment types associated to the order, if more than
+-- Get all payment types associated to an order, if more than
 -- one payment is associated we should see more than one PPCPAYINST_ID associated to
 -- an ORDER
 
