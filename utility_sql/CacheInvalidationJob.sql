@@ -7,6 +7,7 @@ select * from SCHSTATUS WHERE SCSJOBNBR IN
 (SELECT SCCJOBREFNUM FROM SCHCONFIG  WHERE sccpathinfo='DynaCacheInvalidation' and SCCACTIVE='A') ;
 
 -- Get time of next execution of DynaCacheInvalidation Job
-SELECT SCSPREFSTART FROM SCHACTIVE WHERE SCSJOBNBR IN 
-(SELECT SCCJOBREFNUM FROM SCHCONFIG  WHERE sccpathinfo='DynaCacheInvalidation' and SCCACTIVE='A') ;
+select * from SCHSTATUS WHERE SCSJOBNBR IN 
+(SELECT SCCJOBREFNUM FROM SCHCONFIG  WHERE sccpathinfo='DynaCacheInvalidation' and SCCACTIVE='A') 
+order by SCSACTLSTART desc;
 
