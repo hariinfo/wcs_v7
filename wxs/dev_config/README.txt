@@ -42,11 +42,18 @@ and creates a new replica shard on another grid container or IP address.
 5. -Djava.net.preferIPv4Stack=true
 If you are sure that you will only communicate with IPv4 addresses, you can set the following Java property in each server
 
-
-
-7. -Dcom.ibm.cacheLocalHost=True
+-Dcom.ibm.cacheLocalHost=True
 The following IBM JVM property will cache the ip address of the hostname in a static string,
 upon the first call to getLocalHost(). Later calls will use this string if it exists.
 This will turn on the caching to change the behavior back to what it was prior
 to Java 1.4.1 so that a full network DNS lookup is not performed every time the method is called.
 http://www-01.ibm.com/support/docview.wss?uid=swg21170467
+
+7. To enable container level tracing run following command 
+
+c:\ibm\WebSphere\eXtremeScale\ObjectGrid\bin>xscmd.bat -c setTraceSpec -spec 
+"com.ibm.ws.objectgrid.dynacache.*=debug=enabled" -cep anitha-pc:2810
+
+Put back the old trace component
+c:\ibm\WebSphere\eXtremeScale\ObjectGrid\bin>xscmd.bat -c setTraceSpec -spec "*=info=enabled" -cep anitha-pc:2810
+
