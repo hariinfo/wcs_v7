@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Configuration notes:
+1. developmentMode=true : Our sample environment is running all containers on the same node. 
+Normally, replicas will only be created on different nodes from the primary. We must set this for development mode to indicate
+that we would like replicas created even though the container servers are on the same node.
+2. numInitialContainers=2 : We need to start container server twice
+-->
+
+
+<deploymentPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://ibm.com/ws/objectgrid/deploymentPolicy ../deploymentPolicy.xsd"
+	xmlns="http://ibm.com/ws/objectgrid/deploymentPolicy">
+
+	<objectgridDeployment objectgridName="DYNACACHE_REMOTE">
+       <mapSet name="DYNACACHE_REMOTE"
+				numberOfPartitions="47"
+				minSyncReplicas="0"
+				maxSyncReplicas="0"
+				maxAsyncReplicas="1"
+				numInitialContainers="2"
+				developmentMode="true"
+				replicaReadEnabled="false">
+ 		   <map ref="IBM_DC_PARTITIONED_.*" />
+       </mapSet>
+	</objectgridDeployment>
+</deploymentPolicy>

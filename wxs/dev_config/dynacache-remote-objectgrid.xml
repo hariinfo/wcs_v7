@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objectGridConfig 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://ibm.com/ws/objectgrid/config ../objectGrid.xsd"
+	xmlns="http://ibm.com/ws/objectgrid/config">
+
+	<objectGrids>
+		<objectGrid name="DYNACACHE_REMOTE" txTimeout="30"> 
+		
+			<backingMap name="IBM_DC_PARTITIONED_.*" template="true" readOnly="false" pluginCollectionRef="all" preloadMode="false" 
+				lockStrategy="PESSIMISTIC" copyMode="COPY_ON_READ_AND_COMMIT" ttlEvictorType="NONE" 
+				nullValuesSupported="false" />
+				
+		</objectGrid>
+	</objectGrids>
+
+	<backingMapPluginCollections>  
+		
+		<backingMapPluginCollection id="all"> 
+			<bean id="MapIndexPlugin" className="com.ibm.websphere.objectgrid.plugins.index.HashIndex"> 
+				<property name="Name" type="java.lang.String" value="DEPENDENCY_ID_INDEX" description="index name" />
+				<property name="RangeIndex" type="boolean" value="false" description="this is not a range index" /> 
+				<property name="POJOKeyIndex" type="boolean" value="false" description="index based off a key" /> 
+				<property name="AttributeName" type="java.lang.String" value="Dependencies" description="attribute name" />			
+			</bean>
+			<bean id="MapIndexPlugin" className="com.ibm.websphere.objectgrid.plugins.index.HashIndex"> 
+				<property name="Name" type="java.lang.String" value="TEMPLATE_INDEX" description="index name" />
+				<property name="RangeIndex" type="boolean" value="false" description="this is not a range index" /> 
+				<property name="POJOKeyIndex" type="boolean" value="false" description="index based off a key" /> 
+				<property name="AttributeName" type="java.lang.String" value="TemplateSet" description="attribute name" />			
+			</bean>
+			<bean id="ObjectTransformer" className="com.ibm.ws.objectgrid.dynacache.entries.CacheEntryData$Transformer" />
+			<bean id="Evictor" className="com.ibm.ws.objectgrid.dynacache.evictors.DistributedDynacacheEvictor"/>
+			<bean id="Loader" className="com.ibm.ws.objectgrid.dynacache.DynacacheLoader"/>
+		</backingMapPluginCollection>
+
+	</backingMapPluginCollections>
+
+</objectGridConfig>
